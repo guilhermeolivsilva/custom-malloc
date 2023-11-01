@@ -1,14 +1,14 @@
 #include <stddef.h>
 
-#define SIZE 10
+#define MEM_SIZE 64
 #define TRUE 1
 #define FALSE 0
 
 typedef struct Block {
     size_t size;
+    char isFree;
     struct Block* next;
 } Block;
 
 void *myMalloc(size_t size);
 void myFree(void *ptr);
-void initializeHeap();

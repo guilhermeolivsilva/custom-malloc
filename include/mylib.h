@@ -12,3 +12,4 @@ typedef struct Block {
 
 void *myMalloc(size_t size);
 void myFree(void *ptr);
+int getAvailableMemory();

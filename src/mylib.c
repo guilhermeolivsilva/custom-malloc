@@ -66,3 +66,19 @@ void myFree(void* ptr) {
         current = current->next;
     }
 }
+
+
+int getAvailableMemory() {
+    int availableMemory = MEM_SIZE;
+    Block* current = (Block*) heap;
+
+    while(current) {
+        if(!current->isFree) {
+            availableMemory -= current->size + sizeof(Block);
+        }
+
+        current = current->next;
+    }
+
+    return availableMemory;
+}

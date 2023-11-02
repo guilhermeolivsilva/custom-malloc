@@ -43,6 +43,26 @@ void *myMalloc(size_t size) {
 }
 
 
-void myFree(void *ptr) {
+void myFree(void* ptr) {
+    if (ptr == NULL) {
+        return;
+    }
 
+    Block* block = (Block*)((char*)ptr - sizeof(Block));
+    block->isFree = TRUE;
+    ptr = NULL;
+
+    Block* current = (Block*) heap;
+    Block* prev = NULL;
+
+    // Coalesce memory
+    while(current) {
+        if(current->isFree && current->next && current->next->isFree) {
+            current->size += sizeof(Block) + current->next->size;
+            current->next = current->next->next;
+        }
+
+        prev = current;
+        current = current->next;
+    }
 }

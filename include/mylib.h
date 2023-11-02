@@ -1,6 +1,6 @@
 #include <stddef.h>
 
-#define MEM_SIZE 64
+#define MEM_SIZE 72
 #define TRUE 1
 #define FALSE 0
 

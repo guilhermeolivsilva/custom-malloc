@@ -2,7 +2,8 @@
 
 char heap[MEM_SIZE];
 
-void *myMalloc(size_t size) {
+void *myMalloc(size_t size)
+{
     static int heapHasBeenInitialized = FALSE;
 
     if(size + sizeof(Block) > MEM_SIZE || size <= 0) {
@@ -43,7 +44,8 @@ void *myMalloc(size_t size) {
 }
 
 
-void myFree(void* ptr) {
+void myFree(void* ptr)
+{
     if (ptr == NULL) {
         return;
     }
@@ -68,7 +70,8 @@ void myFree(void* ptr) {
 }
 
 
-int getAvailableMemory() {
+int getAvailableMemory()
+{
     int availableMemory = MEM_SIZE;
     Block* current = (Block*) heap;
 

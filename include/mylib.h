@@ -4,7 +4,8 @@
 #define TRUE 1
 #define FALSE 0
 
-typedef struct Block {
+typedef struct Block
+{
     size_t size;
     char isFree;
     struct Block* next;

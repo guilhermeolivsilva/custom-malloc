@@ -1,8 +1,19 @@
 #include "mylib.h"
 
-char heap[MEM_SIZE];
+#define MEM_SIZE 72
+#define TRUE 1
+#define FALSE 0
 
-void *myMalloc(size_t size)
+typedef struct Block
+{
+    size_t size;
+    char isFree;
+    struct Block* next;
+} Block;
+
+static char heap[MEM_SIZE];
+
+void *malloc(size_t size)
 {
     static int heapHasBeenInitialized = FALSE;
 
@@ -44,7 +55,7 @@ void *myMalloc(size_t size)
 }
 
 
-void myFree(void* ptr)
+void free(void* ptr)
 {
     if (ptr == NULL) {
         return;
@@ -69,19 +80,3 @@ void myFree(void* ptr)
     }
 }
 
-
-int getAvailableMemory()
-{
-    int availableMemory = MEM_SIZE;
-    Block* current = (Block*) heap;
-
-    while(current) {
-        if(!current->isFree) {
-            availableMemory -= current->size + sizeof(Block);
-        }
-
-        current = current->next;
-    }
-
-    return availableMemory;
-}
